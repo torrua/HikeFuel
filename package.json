@@ -2,7 +2,8 @@
   "name": "hike-fuel",
   "version": "0.1.0",
   "private": true,
-  "main": "index.js",
+  "type": "module",
+  "main": "index.jsx",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.2.3",
@@ -48,6 +49,7 @@
   "author": "Andrei Trunkin",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint-config-airbnb": "^19.0.4"
   }
 }
