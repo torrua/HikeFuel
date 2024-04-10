@@ -1,4 +1,5 @@
 // import { useContext } from 'react';
+import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -21,6 +22,7 @@ const ErrorBlock = () => {
 
 const SignUpPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'signUpPage' });
+  const inputRef = useRef();
   const navigate = useNavigate();
 
   const LoginSchema = yup.object().shape({
@@ -38,6 +40,10 @@ const SignUpPage = () => {
       .required(t('confirmPasswordError'))
       .oneOf([yup.ref('password'), null], t('equalRequired')),
   });
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   return (
     <>
@@ -73,6 +79,7 @@ const SignUpPage = () => {
                     type="text"
                     required
                     className="form-control"
+                    innerRef={inputRef}
                   />
                   {errors.username && touched.username ? (
                     <div className="text-danger">{errors.username}</div>
