@@ -33,9 +33,24 @@ const notFoundPage = {
   adviceLink: 'main page',
 };
 
+const navigation = {
+  buttonENG: 'ENG',
+  buttonRU: 'RU',
+  toMain: 'Main',
+  login: 'Log in',
+  signup: 'Sign up',
+};
+
+const footer = {
+  buttonENG: 'ENG',
+  buttonRU: 'RU',
+};
+
 const en = {
   translation: {
     pageInfo: 'Hike Fuel is on process',
+    navigation,
+    footer,
     signUpPage,
     loginPage,
     notFoundPage,
