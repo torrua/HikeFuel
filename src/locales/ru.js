@@ -34,12 +34,10 @@ const notFoundPage = {
 };
 
 const navigation = {
+  brand: 'HikeFuel',
   toMain: 'На главную',
   login: 'Войти',
   signup: 'Зарегистрироваться',
-};
-
-const footer = {
   buttonENG: 'ENG',
   buttonRU: 'RU',
 };
@@ -48,7 +46,6 @@ const ru = {
   translation: {
     pageInfo: 'Hike Fuel в работе',
     navigation,
-    footer,
     signUpPage,
     loginPage,
     notFoundPage,
