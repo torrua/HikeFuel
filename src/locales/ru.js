@@ -35,10 +35,10 @@ const notFoundPage = {
 
 const navigation = {
   brand: 'HikeFuel',
-  toMain: 'На главную',
+  toMain: 'Главная',
   login: 'Войти',
-  signup: 'Зарегистрироваться',
-  buttonENG: 'ENG',
+  signup: 'Создать',
+  buttonENG: 'EN',
   buttonRU: 'RU',
 };
 

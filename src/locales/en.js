@@ -36,9 +36,9 @@ const notFoundPage = {
 const navigation = {
   brand: 'HikeFuel',
   toMain: 'Main',
-  login: 'Log in',
-  signup: 'Sign up',
-  buttonENG: 'ENG',
+  login: 'LogIn',
+  signup: 'SignUp',
+  buttonENG: 'EN',
   buttonRU: 'RU',
 };
 
