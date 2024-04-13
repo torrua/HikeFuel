@@ -5,25 +5,23 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/js/bootstrap.bundle.js';
 
-import SignUpPage from './components/SignUpPage';
-import LoginPage from './components/LoginPage';
-import NotFoundPage from './components/NotFoundPage';
-import Navigation from './components/Navigation';
-import FooterPage from './components/Footer';
+import MainPage from './components/MainPage.jsx'
+import SignUpPage from './components/SignUpPage.jsx';
+import LoginPage from './components/LoginPage.jsx';
+import NotFoundPage from './components/NotFoundPage.jsx';
+import Navigation from './components/Navigation.jsx';
 
 const App = () => {
-  // const { t } = useTranslation();
-  
   return (
     <>
       <Router>
         <Navigation />
         <Routes>
-          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <FooterPage />
       </Router>
     </>
   );
