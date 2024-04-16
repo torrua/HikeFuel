@@ -1,5 +1,5 @@
 const signUpPage = {
-  header: 'Регистрация',
+  header: 'Создать аккаунт',
   userName: 'Имя пользователя',
   userNameRequired: 'Пожалуйста, укажите имя пользователя',
   userNameMin: 'От 3-х до 20-и символов',
@@ -9,7 +9,7 @@ const signUpPage = {
   confirmPassword: 'Подтвердите пароль',
   confirmPasswordError: 'Пожалуйста, подтвердите пароль',
   equalRequired: 'Пароли должны совпадать',
-  signUpButton: 'Зарегистрироваться',
+  signUpButton: 'Создать',
   formSignUpError: 'Такой пользователь уже существует',
 };
 
@@ -23,7 +23,7 @@ const loginPage = {
   formLoginError: 'Неверные имя пользователя или пароль',
   loginButton: 'Войти',
   noAccount: 'Нет аккаунта?',
-  signUpLink: 'Регистрация',
+  signUpLink: 'Создать',
 };
 
 const notFoundPage = {
