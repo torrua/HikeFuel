@@ -49,8 +49,9 @@ const LoginPage = () => {
             .then((response) => {
               // check authorization
               Object.assign(localStorage, response.data);
-            })
-            // .then(() => navigate('/'))
+              // don't forget keep userID to localStorage ot to context?
+             })
+            // .then(() => navigate('/:userId'))
             .catch(() => {
               // 
             });

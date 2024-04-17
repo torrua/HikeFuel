@@ -57,6 +57,7 @@ const SignUpPage = () => {
             .then((response) => {
               // if there are not errors save token and send 'status' through context
               Object.assign(localStorage, response.data);
+              // don't forget keep userID to localStorage
             })
             .then(() => navigate('/'))
             .catch(() => {
