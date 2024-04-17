@@ -10,19 +10,26 @@ import SignUpPage from './components/SignUpPage.jsx';
 import LoginPage from './components/LoginPage.jsx';
 import NotFoundPage from './components/NotFoundPage.jsx';
 import Navigation from './components/Navigation.jsx';
+import AuthProvider from './context/AuthProvider.jsx';
+import RequireAuth from './hooks/requireAuth.jsx';
 
 const App = () => {
   return (
     <>
-      <Router>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+            <RequireAuth>
+              <Route path="/:userId" element={<></>} />
+            </RequireAuth>
+          </Routes>
+        </Router>
+      </AuthProvider>
     </>
   );
 }
