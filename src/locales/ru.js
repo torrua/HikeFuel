@@ -1,3 +1,11 @@
+const mainPage = {
+  pageInfo: 'Hike Fuel в работе',
+};
+
+const userPage = {
+  pageInfo: 'Страница в работе',
+};
+
 const signUpPage = {
   header: 'Создать аккаунт',
   userName: 'Имя пользователя',
@@ -37,6 +45,7 @@ const navigation = {
   brand: 'HikeFuel',
   toMain: 'Главная',
   login: 'Войти',
+  logout: 'Выйти',
   signup: 'Создать',
   buttonENG: 'EN',
   buttonRU: 'RU',
@@ -44,11 +53,12 @@ const navigation = {
 
 const ru = {
   translation: {
-    pageInfo: 'Hike Fuel в работе',
-    navigation,
+    mainPage,
+    userPage,
     signUpPage,
     loginPage,
     notFoundPage,
+    navigation,
   },
 };
 

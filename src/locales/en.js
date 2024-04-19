@@ -1,3 +1,11 @@
+const mainPage = {
+  pageInfo: 'Hike Fuel is on process',
+};
+
+const userPage = {
+  pageInfo: 'Page is on process',
+};
+
 const signUpPage = {
   header: 'Sign up',
   userName: 'Username',
@@ -37,6 +45,7 @@ const navigation = {
   brand: 'HikeFuel',
   toMain: 'Main',
   login: 'LogIn',
+  logout: 'LogOut',
   signup: 'SignUp',
   buttonENG: 'EN',
   buttonRU: 'RU',
@@ -44,11 +53,12 @@ const navigation = {
 
 const en = {
   translation: {
-    pageInfo: 'Hike Fuel is on process',
-    navigation,
+    mainPage,
+    userPage,
     signUpPage,
     loginPage,
     notFoundPage,
+    navigation,
   },
 };
 
