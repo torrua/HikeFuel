@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar, Button, Container } from 'react-bootstrap';
+import { Nav, Navbar, Button, ButtonGroup, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import AuthContext from '../context';
@@ -35,19 +35,23 @@ const Navigation = () => {
           <Nav className="me-md-auto">
             <Nav.Link as={Link} to="/">{t('toMain')}</Nav.Link>
           </Nav>
-          <Nav className="gap-1 ms-md-auto">
+          <Nav className="gap-2 ms-md-auto">
+            <ButtonGroup>
             {
               loggedIn
-              ? <Button className="btn-primary" onClick={logOut()}>{t('logout')}</Button>
-              : <Button className="btn-primary" as={Link} to="/login">{t('login')}</Button>
+              ? <Button variant="outline-secondary" onClick={logOut()}>{t('logout')}</Button>
+              : <Button variant="outline-secondary" as={Link} to="/login">{t('login')}</Button>
             }
             {
               !loggedIn
-              ? <Button className="btn-primary" as={Link} to="/signup">{t('signup')}</Button>
+              ? <Button variant="outline-secondary" as={Link} to="/signup">{t('signup')}</Button>
               : null
             }
-            <Button className="btn-success" onClick={setEng} active={i18n.language === 'en' ? true : false}>{t('buttonENG')}</ Button>
-            <Button className="btn-success" onClick={setRu} active={i18n.language === 'ru' ? true : false}>{t('buttonRU')}</ Button>
+            </ButtonGroup>
+            <ButtonGroup size="sm">
+              <Button variant="outline-secondary" onClick={setEng} active={i18n.language === 'en' ? true : false}>{t('buttonENG')}</ Button>
+              <Button variant="outline-secondary" onClick={setRu} active={i18n.language === 'ru' ? true : false}>{t('buttonRU')}</ Button>
+            </ButtonGroup>
           </Nav>
           </Navbar.Collapse>
         </Container>
