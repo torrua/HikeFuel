@@ -8,9 +8,15 @@ const userPage = {
 
 const signUpPage = {
   header: 'Sign up',
-  userName: 'Username',
-  userNameRequired: 'Specify your username, please',
+  userName: 'Username (Nickname)',
+  userNameRequired: 'Specify your username (nickname), please',
   userNameMin: 'From 3 to 20 characters',
+  firstName: 'Name',
+  firstNameRequired: 'Specify your name, please',
+  lastName: 'Last name',
+  lastNameRequired: 'Specify your last name, please',
+  emailInvalid: 'Invalid e-mail',
+  emailRequired: 'Specify your e-mail, please',
   password: 'Password',
   passwordRequired: 'Specify your password, please',
   passwordMin: 'Password must consist of at least {{signs}} characters',

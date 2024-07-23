@@ -8,9 +8,15 @@ const userPage = {
 
 const signUpPage = {
   header: 'Создать аккаунт',
-  userName: 'Имя пользователя',
-  userNameRequired: 'Пожалуйста, укажите имя пользователя',
+  userName: 'Имя пользователя (никнейм)',
+  userNameRequired: 'Пожалуйста, укажите имя пользователя (никнейм)',
   userNameMin: 'От 3-х до 20-и символов',
+  firstName: 'Имя',
+  firstNameRequired: 'Пожалуйста, укажите имя',
+  lastName: 'Фамилия',
+  lastNameRequired: 'Пожалуйста, укажите фамилию',
+  emailInvalid: 'Некорректный e-mail',
+  emailRequired: 'Пожалуйста, укажите электронную почту',
   password: 'Пароль',
   passwordRequired: 'Пожалуйста, укажите пароль',
   passwordMin: 'Не менее {{signs}} символов',
