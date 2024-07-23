@@ -25,12 +25,24 @@ const SignUpPage = () => {
   const inputRef = useRef();
   const navigate = useNavigate();
 
-  const LoginSchema = yup.object().shape({
+  const LoginSchema = yup.object({
     username: yup
       .string()
       .trim()
       .required(t('userNameRequired'))
       .min(4, t('userNameMin')),
+    firstname: yup 
+      .string()
+      .trim()
+      .required(t('firstNameRequired')),
+    lastname: yup
+      .string()
+      .trim()
+      .required(t('lastNameRequired')),
+    email: yup
+      .string()
+      .email(t('emailInvalid'))
+      .required(t('emailRequired')),
     password: yup
       .string()
       .required(t('passwordRequired'))
