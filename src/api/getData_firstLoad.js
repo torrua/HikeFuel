@@ -3,7 +3,7 @@ import url from './url';
 
 // draft
 const getData = async () => {
-  const { data } = await axios.get(url.pathname, {
+  const { data } = await axios.get(url.href, {
     headers: {
       Authorization: `Bearer ${localStorage.token}`,
     },
