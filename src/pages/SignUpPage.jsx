@@ -8,6 +8,12 @@ import cn from 'classnames';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
+import url from '../api/url.js';
+
+const serverLink = url.href;
+const copyUrl = new URL(serverLink);
+copyUrl.pathname = '/auth/register';
+
 const ErrorBlock = () => {
   // const { statusState } = useContext(StatusContext);
   const { t } = useTranslation('translation', { keyPrefix: 'signUpPage' });
@@ -61,19 +67,21 @@ const SignUpPage = () => {
     <>
       <Formik
         validationSchema={LoginSchema}
+        // update initialValues!
         initialValues={{ username: '', password: '', confirmPassword: '' }}
         onSubmit={(values, { resetForm }) => {
           const { confirmPassword, ...updateValues } = values;
           axios
-            .post('', updateValues)
-            .then((response) => {
+            .post(copyUrl.href, updateValues)
+            /* .then((response) => {
               // if there are not errors save token and send 'status' through context
               Object.assign(localStorage, response.data);
               // don't forget keep userID to localStorage
-            })
-            .then(() => navigate('/'))
+            }) */
+            .then(() => navigate('/login'))
             .catch(() => {
-              // 
+              /* "detail": "REGISTER_USER_ALREADY_EXISTS"
+                  "code": "REGISTER_INVALID_PASSWORD", */
             });
           resetForm();
         }}
@@ -98,6 +106,54 @@ const SignUpPage = () => {
                     <div className="text-danger">{errors.username}</div>
                   ) : null}
                   <label htmlFor="username">{t('userName')}</label>
+                </div>
+
+                <div className="form-floating mb-3">
+                  <Field
+                    id="firstname"
+                    name="firstname"
+                    placeholder={t('firstName')}
+                    autoComplete="firstname"
+                    type="text"
+                    required
+                    className="form-control"
+                  />
+                  {errors.firstname && touched.firstname ? (
+                    <div className="text-danger">{errors.firstname}</div>
+                  ) : null}
+                  <label htmlFor="firstname">{t('firstName')}</label>
+                </div>
+
+                <div className="form-floating mb-3">
+                  <Field
+                    id="lastname"
+                    name="lastname"
+                    placeholder={t('lastName')}
+                    autoComplete="lastname"
+                    type="text"
+                    required
+                    className="form-control"
+                  />
+                  {errors.lastname && touched.lastname ? (
+                    <div className="text-danger">{errors.lastname}</div>
+                  ) : null}
+                  <label htmlFor="lastname">{t('lastName')}</label>
+                </div>
+
+                <div className="form-floating mb-3">
+                  <Field
+                    id="email"
+                    name="email"
+                    placeholder={t('email')}
+                    autoComplete="email"
+                    type="email"
+                    required
+                    className="form-control"
+                  />
+                  {errors.email && touched.email ? (
+                    <div className="text-danger">{errors.email}</div>
+                  ) : null}
+                  <label htmlFor="email">{t('email')}</label>
                 </div>
 
                 <div className="form-floating mb-3">
