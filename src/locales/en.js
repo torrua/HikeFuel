@@ -15,6 +15,7 @@ const signUpPage = {
   firstNameRequired: 'Specify your name, please',
   lastName: 'Last name',
   lastNameRequired: 'Specify your last name, please',
+  email: 'E-mail',
   emailInvalid: 'Invalid e-mail',
   emailRequired: 'Specify your e-mail, please',
   password: 'Password',
