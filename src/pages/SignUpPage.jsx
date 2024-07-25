@@ -8,11 +8,7 @@ import cn from 'classnames';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
-import url from '../api/url.js';
-
-const serverLink = url.href;
-const copyUrl = new URL(serverLink);
-copyUrl.pathname = '/auth/register';
+import { postRegisterHref } from '../api/url.js';
 
 const ErrorBlock = () => {
   // const { statusState } = useContext(StatusContext);
@@ -37,11 +33,11 @@ const SignUpPage = () => {
       .trim()
       .required(t('userNameRequired'))
       .min(4, t('userNameMin')),
-    firstname: yup 
+    first_name: yup 
       .string()
       .trim()
       .required(t('firstNameRequired')),
-    lastname: yup
+    last_name: yup
       .string()
       .trim()
       .required(t('lastNameRequired')),
@@ -68,18 +64,40 @@ const SignUpPage = () => {
       <Formik
         validationSchema={LoginSchema}
         // update initialValues!
-        initialValues={{ username: '', password: '', confirmPassword: '' }}
-        onSubmit={(values, { resetForm }) => {
-          const { confirmPassword, ...updateValues } = values;
+        initialValues={{ 
+          username: '',
+          first_name: '',
+          last_name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        }}
+        onSubmit={async (values, { resetForm }) => {
+          const { confirmPassword, ...formValues } = values;
+          const { username, first_name, last_name, email, password } = formValues;
+          const postValues = { 
+            email,
+            password,
+            is_active: true,
+            is_superuser: false,
+            is_verified: false,
+            first_name,
+            last_name,
+            username,
+          };
           axios
-            .post(copyUrl.href, updateValues)
+            .post(postRegisterHref, postValues)
             /* .then((response) => {
               // if there are not errors save token and send 'status' through context
               Object.assign(localStorage, response.data);
               // don't forget keep userID to localStorage
             }) */
-            .then(() => navigate('/login'))
-            .catch(() => {
+            .then(() => {
+              navigate('/login')
+              console.log('ok')
+            })
+            .catch((answer) => {
+              console.log(answer);
               /* "detail": "REGISTER_USER_ALREADY_EXISTS"
                   "code": "REGISTER_INVALID_PASSWORD", */
             });
@@ -110,34 +128,34 @@ const SignUpPage = () => {
 
                 <div className="form-floating mb-3">
                   <Field
-                    id="firstname"
-                    name="firstname"
+                    id="first_name"
+                    name="first_name"
                     placeholder={t('firstName')}
-                    autoComplete="firstname"
+                    autoComplete="first_name"
                     type="text"
                     required
                     className="form-control"
                   />
-                  {errors.firstname && touched.firstname ? (
-                    <div className="text-danger">{errors.firstname}</div>
+                  {errors.first_name && touched.first_name ? (
+                    <div className="text-danger">{errors.first_name}</div>
                   ) : null}
-                  <label htmlFor="firstname">{t('firstName')}</label>
+                  <label htmlFor="first_name">{t('firstName')}</label>
                 </div>
 
                 <div className="form-floating mb-3">
                   <Field
-                    id="lastname"
-                    name="lastname"
+                    id="last_name"
+                    name="last_name"
                     placeholder={t('lastName')}
-                    autoComplete="lastname"
+                    autoComplete="last_name"
                     type="text"
                     required
                     className="form-control"
                   />
-                  {errors.lastname && touched.lastname ? (
-                    <div className="text-danger">{errors.lastname}</div>
+                  {errors.last_name && touched.last_name ? (
+                    <div className="text-danger">{errors.last_name}</div>
                   ) : null}
-                  <label htmlFor="lastname">{t('lastName')}</label>
+                  <label htmlFor="last_name">{t('lastName')}</label>
                 </div>
 
                 <div className="form-floating mb-3">
