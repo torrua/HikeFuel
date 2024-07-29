@@ -1,5 +1,5 @@
 import axios from 'axios';
-import url from './url';
+import url from '../api/url';
 
 // draft
 const getData = async () => {
