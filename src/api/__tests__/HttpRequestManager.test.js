@@ -20,7 +20,7 @@ test('register user', async () => {
   
   const fakeUrl = 'https://fakeurl.org';
   const createManager = new HttpRequestManager(fakeUrl);
-  const result = await createManager.requestToServer('/fortesting', 'post', client);
+  const result = await createManager.post('/fortesting', client, {});
   expect(result).toEqual(exampleObject);
 });
 
@@ -31,6 +31,6 @@ test('check connection', async () => {
     .reply(200);
 
   const testManager = new HttpRequestManager('https://fuel-hike-torrua-06d2d937.koyeb.app');
-  await testManager.requestToServer('/', 'get', axios);
+  await testManager.get('/', axios);
   expect(scope.isDone()).toBe(true);
 });
