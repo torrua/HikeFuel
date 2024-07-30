@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import MainPage from './pages/MainPage.jsx'
 import UserPage from './pages/UserPage.jsx';
-import SignUpPage from './pages/SignUpPage.jsx';
+import SignUpPage from './pages/SignUpPage/SignUpPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import Navigation from './pages/Navigation.jsx';

@@ -10,7 +10,7 @@ const signUpPage = {
   header: 'Создать аккаунт',
   userName: 'Имя пользователя (никнейм)',
   userNameRequired: 'Пожалуйста, укажите имя пользователя (никнейм)',
-  userNameMin: 'От 3-х до 20-и символов',
+  userNameMin: 'Не менее 3-х символов',
   firstName: 'Ваше имя',
   firstNameRequired: 'Пожалуйста, укажите имя',
   lastName: 'Ваша фамилия',
@@ -25,7 +25,8 @@ const signUpPage = {
   confirmPasswordError: 'Пожалуйста, подтвердите пароль',
   equalRequired: 'Пароли должны совпадать',
   signUpButton: 'Создать',
-  formSignUpError: 'Такой пользователь уже существует',
+  userExistsError: 'Такой пользователь уже существует',
+  unexpectedError: 'Ошибка. Не удалось передать данные',
 };
 
 const loginPage = {

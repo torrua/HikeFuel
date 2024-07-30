@@ -10,7 +10,7 @@ const signUpPage = {
   header: 'Sign up',
   userName: 'Username (Nickname)',
   userNameRequired: 'Specify your username (nickname), please',
-  userNameMin: 'From 3 to 20 characters',
+  userNameMin: 'From 3 characters',
   firstName: 'Name',
   firstNameRequired: 'Specify your name, please',
   lastName: 'Last name',
@@ -25,7 +25,8 @@ const signUpPage = {
   confirmPasswordError: 'Confirm your password, please',
   equalRequired: 'Passwords must match',
   signUpButton: 'Sign up',
-  formSignUpError: 'Such user already exists',
+  userExistsError: 'Such user already exists',
+  unexpectedError: 'Error. Failed to submit data',
 };
 
 const loginPage = {

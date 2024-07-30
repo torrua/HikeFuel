@@ -8,18 +8,19 @@ import cn from 'classnames';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
-import { requests, registerPath } from '../api/requests.js';
+import { requests, registerPath } from '../../api/requests.js';
 
-const ErrorBlock = () => {
-  // const { statusState } = useContext(StatusContext);
-  const { t } = useTranslation('translation', { keyPrefix: 'signUpPage' });
-  // const { authorization } = statusState;
+// Create a <FormField /> component to increase code reusability
+// Add an onBlur event to remove messages after losing focus
+// Probably don't need the <ErrorBlock /> component; consider using alerts instead
 
+const ErrorBlock = ({ errorMessage }) => {
   const classError = cn('mt-0', 'text-danger', {
-    'd-none': /* authorization */ true,
-    'd-block': /* !authorization */ false,
+    'd-none': !errorMessage,
+    'd-block': !!errorMessage,
   });
-  return <div className={classError}>{t('formSignUpError')}</div>;
+
+  return <div className={classError}>{errorMessage}</div>;
 };
 
 const SignUpPage = () => {
@@ -32,7 +33,7 @@ const SignUpPage = () => {
       .string()
       .trim()
       .required(t('userNameRequired'))
-      .min(4, t('userNameMin')),
+      .min(3, t('userNameMin')),
     first_name: yup 
       .string()
       .trim()
@@ -48,7 +49,7 @@ const SignUpPage = () => {
     password: yup
       .string()
       .required(t('passwordRequired'))
-      .min(8, t('passwordMin', { signs: 8 })),
+      .min(10, t('passwordMin', { signs: 10 })),
     confirmPassword: yup
       .string()
       .required(t('confirmPasswordError'))
@@ -63,6 +64,7 @@ const SignUpPage = () => {
     <>
       <Formik
         validationSchema={LoginSchema}
+
         initialValues={{ 
           username: '',
           first_name: '',
@@ -71,9 +73,11 @@ const SignUpPage = () => {
           password: '',
           confirmPassword: '',
         }}
-        onSubmit={async (values, { resetForm }) => {
+
+        onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
           const { confirmPassword, ...formValues } = values;
           const { username, first_name, last_name, email, password } = formValues;
+
           const postValues = { 
             email,
             password,
@@ -84,17 +88,41 @@ const SignUpPage = () => {
             last_name,
             username,
           };
-          requests.post(registerPath, axios, postValues)
-            .then(() => {
+
+          try {
+            await requests.post(registerPath, axios, postValues)
+              resetForm();
               navigate('/login')
               // send data to state (redux tolkit)
-            })
-            .catch(() => {
-              console.log('Error');
-              /* "detail": "REGISTER_USER_ALREADY_EXISTS"
-                  "code": "REGISTER_INVALID_PASSWORD", */
-            });
-          resetForm();
+          } catch (error) {
+              if (error.response) {
+                const statusCode = error.response.status;
+                const errorData = error.response.data;
+  
+                if (statusCode === 400 && errorData.detail === "REGISTER_USER_ALREADY_EXISTS") {
+                  setErrors({ username: t('userExistsError')});
+                  alert(t('userExistsError'));
+                } else if (statusCode === 422 && Array.isArray(errorData.detail)) {
+                    const formErrors = {};
+                    errorData.detail.forEach(err => {
+                      const fieldName = err.loc[1];
+                      // How many types of errors are there, and does double validation make sense?
+                      formErrors[fieldName] = err.msg;
+                    });
+                  setErrors(formErrors);
+                  const [ message, ] = Object.values(formErrors);
+                  alert(message);
+                } else {
+                    setErrors({ _error: t('unexpectedError') });
+                    alert(t('unexpectedError'));
+                }
+              } else {
+                  setErrors({ _error: t('unexpectedError') });
+                  alert(t('unexpectedError'));
+              }
+          } finally {
+            setSubmitting(false);
+          }
         }}
       >
         {({ errors, touched, isSubmitting }) => (
@@ -200,7 +228,8 @@ const SignUpPage = () => {
                     {t('confirmPassword')}
                   </label>
                 </div>
-                <ErrorBlock />
+
+                {errors._error && <ErrorBlock errorMessage={errors._error} />}
 
                 <button
                   type="submit"
