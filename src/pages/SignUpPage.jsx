@@ -8,7 +8,7 @@ import cn from 'classnames';
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
-import { postRegisterHref } from '../api/url.js';
+import { requests, registerPath } from '../api/requests.js';
 
 const ErrorBlock = () => {
   // const { statusState } = useContext(StatusContext);
@@ -63,7 +63,6 @@ const SignUpPage = () => {
     <>
       <Formik
         validationSchema={LoginSchema}
-        // update initialValues!
         initialValues={{ 
           username: '',
           first_name: '',
@@ -85,19 +84,13 @@ const SignUpPage = () => {
             last_name,
             username,
           };
-          axios
-            .post(postRegisterHref, postValues)
-            /* .then((response) => {
-              // if there are not errors save token and send 'status' through context
-              Object.assign(localStorage, response.data);
-              // don't forget keep userID to localStorage
-            }) */
+          requests.post(registerPath, axios, postValues)
             .then(() => {
               navigate('/login')
-              console.log('ok')
+              // send data to state (redux tolkit)
             })
-            .catch((answer) => {
-              console.log(answer);
+            .catch(() => {
+              console.log('Error');
               /* "detail": "REGISTER_USER_ALREADY_EXISTS"
                   "code": "REGISTER_INVALID_PASSWORD", */
             });
