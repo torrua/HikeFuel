@@ -1,5 +1,3 @@
-import axios from "axios";
-
 class HttpRequestManager {
   constructor(url) {
     this.url = new URL(url);
@@ -9,30 +7,28 @@ class HttpRequestManager {
     return this.url.hostname;
   }
 
-  async requestToServer (path, method, client = axios, value = {}) {
+  async request(method, path, client, value = null) {
     this.url.pathname = path;
-    
-    let response;
-  
-    switch (method) {
-      case 'get':
-        response = await client.get(this.url.href);
-        break;
-      case 'post':
-        response = await client.post(this.url.href, value);
-        break;
-      case 'put':
-        response = await client.put(this.url.href, value);
-        break;
-      case 'delete':
-        response = await client.delete(this.url.href, value);
-        break;
-      default:
-        throw new Error(`Unsupported method: ${method}`);
-    }
-  
+    const config = value === null ? undefined : value;
+    const response = await client[method](this.url.href, config);
     return response.data;
   }
-}
+
+  get(path, client, value = null) {
+    return this.request('get', path, client, value);
+  }
+
+  post(path, client, value = {}) {
+    return this.request('post', path, client, value);
+  }
+
+  put(path, client, value = {}) {
+    return this.request('put', path, client, value);
+  }
+
+  delete(path, client, value = null) {
+    return this.request('delete', path, client, value);
+  }
+};
 
 export default HttpRequestManager;
