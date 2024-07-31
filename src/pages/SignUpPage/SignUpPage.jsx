@@ -9,6 +9,7 @@ import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
 import { requests, registerPath } from '../../api/requests.js';
+import FormField from './FormField.jsx';
 
 // Create a <FormField /> component to increase code reusability
 // Add an onBlur event to remove messages after losing focus
@@ -125,7 +126,7 @@ const SignUpPage = () => {
           }
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {({ errors, touched, isSubmitting, handleBlur }) => (
           <div className="container mt-5">
             <div className="row justify-content-center align-content-center h-100">
               <h1 className="col-12 text-center text-primary">{t('header')}</h1>
@@ -147,21 +148,17 @@ const SignUpPage = () => {
                   <label htmlFor="username">{t('userName')}</label>
                 </div>
 
-                <div className="form-floating mb-3">
-                  <Field
+                  <FormField
                     id="first_name"
                     name="first_name"
                     placeholder={t('firstName')}
                     autoComplete="first_name"
                     type="text"
-                    required
-                    className="form-control"
+                    label={t('firstName')}
+                    errors={errors}
+                    touched={touched}
+                    handleBlur={handleBlur}
                   />
-                  {errors.first_name && touched.first_name ? (
-                    <div className="text-danger">{errors.first_name}</div>
-                  ) : null}
-                  <label htmlFor="first_name">{t('firstName')}</label>
-                </div>
 
                 <div className="form-floating mb-3">
                   <Field
@@ -199,7 +196,7 @@ const SignUpPage = () => {
                   <Field
                     id="password"
                     name="password"
-                    placeholder={t('passwordMin', { signs: 8 })}
+                    placeholder={t('passwordMin', { signs: 10 })}
                     autoComplete="new-password"
                     type="password"
                     required
