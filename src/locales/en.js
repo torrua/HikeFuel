@@ -10,7 +10,7 @@ const signUpPage = {
   header: 'Sign up',
   userName: 'Username (Nickname)',
   userNameRequired: 'Specify your username (nickname), please',
-  userNameMin: 'From 3 characters',
+  userNameMin: 'The name must contain at least 3 characters',
   firstName: 'Name',
   firstNameRequired: 'Specify your name, please',
   lastName: 'Last name',

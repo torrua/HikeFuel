@@ -10,7 +10,7 @@ const signUpPage = {
   header: 'Создать аккаунт',
   userName: 'Имя пользователя (никнейм)',
   userNameRequired: 'Пожалуйста, укажите имя пользователя (никнейм)',
-  userNameMin: 'Не менее 3-х символов',
+  userNameMin: 'Имя должно содержать не менее 3-х символов',
   firstName: 'Ваше имя',
   firstNameRequired: 'Пожалуйста, укажите имя',
   lastName: 'Ваша фамилия',
