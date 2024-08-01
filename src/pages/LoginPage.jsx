@@ -3,21 +3,20 @@ import { useRef, useEffect } from 'react';
 import { Link, /* useNavigate */ } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import cn from 'classnames';
 
-const ErrorBlock = () => {
-  // const { statusState } = useContext(StatusContext);
-  const { t } = useTranslation('translation', { keyPrefix: 'loginPage' });
-  
+import FormField from './Components/FormField';
+
+const ErrorBlock = ({ errorMessage }) => {
   const classError = cn('mt-0', 'text-danger', {
-    'd-none': /* authorization */ true,
-    'd-block': /* !authorization */ false,
+    'd-none': !errorMessage,
+    'd-block': !!errorMessage,
   });
 
-  return <div className={classError}>{t('formLoginError')}</div>;
+  return <div className={classError}>{errorMessage}</div>;
 };
 
 const LoginPage = () => {
@@ -26,8 +25,11 @@ const LoginPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'loginPage' });
   const inputRef = useRef();
 
-  const LoginSchema = yup.object().shape({
-    username: yup.string().trim().required(t('nicRequired')),
+  const LoginSchema = yup.object({
+    username: yup
+      .string()
+      .trim()
+      .required(t('nicRequired')),
     password: yup
       .string()
       .required(t('passwordRequired'))
@@ -58,42 +60,30 @@ const LoginPage = () => {
           resetForm();
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {({ errors, isSubmitting }) => (
           <div className="container mt-5">
             <div className="row justify-content-center align-content-center h-100">
               <h1 className="col-12 text-center text-primary">{t('header')}</h1>
               <Form className="col-12 col-md-6 mt-3">
-                <div className="form-floating mb-3">
-                  <Field
-                    className="form-control"
-                    name="username"
-                    type="text"
-                    placeholder={t('nic')}
-                    id="username"
-                    required
-                    innerRef={inputRef}
-                  />
-                  {errors.username && touched.username ? (
-                    <div className="text-danger">{errors.username}</div>
-                  ) : null}
-                  <label htmlFor="username">{t('nic')}</label>
-                </div>
+                
+                <FormField
+                  id="username"
+                  name="username"
+                  placeholder={t('nic')}
+                  type="text"               
+                  label={t('nic')}
+                  innerRef={inputRef}
+                />
 
-                <div className="form-floating">
-                  <Field
-                    name="password"
-                    type="password"
-                    placeholder={t('password')}
-                    id="password"
-                    required
-                    className="form-control"
-                  />
-                  {errors.password && touched.password ? (
-                    <div className="text-danger">{errors.password}</div>
-                  ) : null}
-                  <label htmlFor="password">{t('password')}</label>
-                </div>
-                <ErrorBlock />
+                <FormField
+                  id="password"
+                  name="password"
+                  placeholder={t('password')}
+                  type="password"
+                  label={t('password')}
+                />
+
+                {errors._error && <ErrorBlock errorMessage={errors._error} />}
 
                 <button
                   type="submit"
