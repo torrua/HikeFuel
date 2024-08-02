@@ -94,7 +94,7 @@ const SignUpPage = () => {
             await requests.post(registerPath, axios, postValues)
               resetForm();
               navigate('/login')
-              // send data to state (redux tolkit)
+              // send data to state (to redux tolkit)
           } catch (error) {
               if (error.response) {
                 const statusCode = error.response.status;
@@ -134,8 +134,6 @@ const SignUpPage = () => {
                 <FormField
                   id="username"
                   name="username"
-                  placeholder={t('userNameMin')}
-                  autoComplete="username"
                   type="text"
                   label={t('userName')}
                   innerRef={inputRef}
@@ -144,8 +142,6 @@ const SignUpPage = () => {
                 <FormField
                   id="first_name"
                   name="first_name"
-                  placeholder={t('firstName')}
-                  autoComplete="first_name"
                   type="text"
                   label={t('firstName')}
                 />
@@ -153,8 +149,6 @@ const SignUpPage = () => {
                 <FormField
                   id="last_name"
                   name="last_name"
-                  placeholder={t('lastName')}
-                  autoComplete="last_name"
                   type="text"
                   label={t('lastName')}
                 />
@@ -162,8 +156,6 @@ const SignUpPage = () => {
                 <FormField
                   id="email"
                   name="email"
-                  placeholder={t('email')}
-                  autoComplete="email"
                   type="email"
                   label={t('email')}
                 />
@@ -171,8 +163,6 @@ const SignUpPage = () => {
                 <FormField
                   id="password"
                   name="password"
-                  placeholder={t('passwordMin', { signs: 10 })}
-                  autoComplete="new-password"
                   type="password"
                   label={t('password')}
                 />
@@ -180,8 +170,6 @@ const SignUpPage = () => {
                 <FormField
                   id="confirmPassword"
                   name="confirmPassword"
-                  placeholder={t('equalRequire')}
-                  autoComplete="new-password"
                   type="password"
                   label={t('confirmPassword')}
                 />

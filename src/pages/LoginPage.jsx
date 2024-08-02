@@ -69,7 +69,6 @@ const LoginPage = () => {
                 <FormField
                   id="username"
                   name="username"
-                  placeholder={t('nic')}
                   type="text"               
                   label={t('nic')}
                   innerRef={inputRef}
@@ -78,7 +77,6 @@ const LoginPage = () => {
                 <FormField
                   id="password"
                   name="password"
-                  placeholder={t('password')}
                   type="password"
                   label={t('password')}
                 />

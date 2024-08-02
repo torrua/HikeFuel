@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Field, useFormikContext } from 'formik';
 
-const FormField = ({ id, name, placeholder, autoComplete, type, innerRef, label }) => {
+const FormField = ({ id, name, type, label, required, className, innerRef }) => {
   const [isTouched, setIsTouched] = useState(false);
   const { errors, touched, handleBlur } = useFormikContext();
 
@@ -19,11 +19,11 @@ const FormField = ({ id, name, placeholder, autoComplete, type, innerRef, label 
       <Field
         id={id}
         name={name}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
+        placeholder=''
+        autoComplete={name}
         type={type}
-        required
-        className="form-control"
+        required={required}
+        className={className}
         onBlur={handleBlurField}
         onFocus={handleFocusField}
         innerRef={innerRef}
@@ -36,8 +36,12 @@ const FormField = ({ id, name, placeholder, autoComplete, type, innerRef, label 
   );
 };
 
-FormField.propsDefault = {
+FormField.defaultProps = {
+  required: true,
+  className: "form-control",
   innerRef: null,
 }
 
 export default FormField;
+
+// The form-floating class requires an empty placeholder for the label to display correctly.
