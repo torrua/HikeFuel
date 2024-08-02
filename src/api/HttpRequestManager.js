@@ -9,27 +9,27 @@ class HttpRequestManager {
     return this.url.hostname;
   }
 
-  async request(method, path, client = axios, value = null) {
+  async request(method, path, value = null, client = axios) {
     this.url.pathname = path;
     const config = value === null ? undefined : value;
     const response = await client[method](this.url.href, config);
     return response.data;
   }
 
-  get(path, client = axios, value = null) {
-    return this.request('get', path, client, value);
+  get(path, value = null, client = axios) {
+    return this.request('get', path, value, client);
   }
 
-  post(path, client = axios, value = {}) {
-    return this.request('post', path, client, value);
+  post(path, value = {}, client = axios) {
+    return this.request('post', path, value, client);
   }
 
-  put(path, client = axios, value = {}) {
-    return this.request('put', path, client, value);
+  put(path, value = {}, client = axios, ) {
+    return this.request('put', path, value, client);
   }
 
-  delete(path, client = axios, value = null) {
-    return this.request('delete', path, client, value);
+  delete(path, value = null, client = axios) {
+    return this.request('delete', path, value, client);
   }
 };
 

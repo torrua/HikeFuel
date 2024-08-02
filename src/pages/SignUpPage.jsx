@@ -2,7 +2,6 @@
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
 import cn from 'classnames';
 
 import { Formik, Form } from 'formik';
@@ -91,8 +90,9 @@ const SignUpPage = () => {
           };
 
           try {
-            await requests.post(registerPath, axios, postValues)
+            const answer = await requests.post(registerPath, postValues)
               resetForm();
+              console.log(answer);
               navigate('/login')
               // send data to state (to redux tolkit)
           } catch (error) {
