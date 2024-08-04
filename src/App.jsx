@@ -11,7 +11,7 @@ import UserPage from './pages/UserPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
-import Navigation from './pages/Navigation.jsx';
+import Navigation from './pages/Components/Navigation.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
 import RequireAuth from './hooks/requireAuth.jsx';
 import store from './slices/index.js';
