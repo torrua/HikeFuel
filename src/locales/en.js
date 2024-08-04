@@ -1,5 +1,5 @@
 const mainPage = {
-  pageInfo: 'Hike Fuel is on process',
+  pageInfo: 'HikeFuel is on process',
 };
 
 const userPage = {
