@@ -33,7 +33,7 @@ const LoginPage = () => {
     password: yup
       .string()
       .required(t('passwordRequired'))
-      .min(8, t('passwordMin', { signs: 8 })),
+      .min(10, t('passwordMin', { signs: 10 })),
   });
 
   useEffect(() => {
