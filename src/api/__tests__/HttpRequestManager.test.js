@@ -1,5 +1,4 @@
 import nock from 'nock';
-import axios from 'axios';
 
 import AxiosFakeClient from '../AxiosFakeClient.js';
 import HttpRequestManager from '../HttpRequestManager.js';
