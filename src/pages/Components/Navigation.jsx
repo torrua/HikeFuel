@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Nav, Navbar, Button, ButtonGroup, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import AuthContext from '../context';
+import AuthContext from '../../context';
 
 
 // import AuthButtons from './parts/AuthButtonth';
