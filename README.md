@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+This project uses a Makefile to simplify common tasks. Here are the available commands:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## `make install`
+Installs project dependencies using `npm ci`. This ensures a clean and consistent installation of node modules.
 
-## Available Scripts
+## `make start`
+Starts the development server with `npm start`. This command runs the application in development mode.
 
-In the project directory, you can run:
+## `make build`
+Builds the project for production using `npm run build`. It creates a minified and optimized version of your application.
 
-### `npm start`
+## `make clean`
+Removes the `build` directory with `rm -rf build`. This command cleans up old build files.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## `make test`
+Runs tests with `npx jest`. This command executes your test suite to ensure your code is working correctly.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## `make test-watch`
+Runs tests in watch mode with `npx jest --watch`. It automatically re-runs tests when files change, useful for development.
 
-### `npm test`
+## `make coverage`
+Checks test coverage with `npx jest --coverage`. This command generates a report showing which parts of your code are covered by tests.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## `make lint`
+Lints your source code with `npx eslint ./src`. This command checks your code for style and potential errors.
 
-### `npm run build`
+## `make lint-fix`
+Fixes linting issues with `npx eslint ./src --fix`. This command automatically corrects style issues in your code.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Default Goal
+The default goal is set to `install`. This means if you run `make` without any arguments, it will execute the `install` command by default.

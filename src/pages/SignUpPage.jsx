@@ -1,6 +1,10 @@
 // import { useContext } from 'react';
 import { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { actions as userActions } from '../slices/userSlice.js';
+
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 
@@ -12,7 +16,7 @@ import FormField from './Components/FormField.jsx';
 
 // Create a <FormField /> component to increase code reusability - done
 // Add an onBlur event to remove messages after losing focus - done
-// Probably don't need the <ErrorBlock /> component; consider using alerts instead
+// Probably don't need the <ErrorBlock /> component; consider using alerts instead - for discussion
 
 const ErrorBlock = ({ errorMessage }) => {
   const classError = cn('mt-0', 'text-danger', {
@@ -25,6 +29,7 @@ const ErrorBlock = ({ errorMessage }) => {
 
 const SignUpPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'signUpPage' });
+  const dispatch = useDispatch();
   const inputRef = useRef();
   const navigate = useNavigate();
 
@@ -36,12 +41,12 @@ const SignUpPage = () => {
       .min(3, t('userNameMin')),
     first_name: yup 
       .string()
-      .trim()
-      .required(t('firstNameRequired')),
+      .trim(),
+      // .required(t('firstNameRequired')),
     last_name: yup
       .string()
-      .trim()
-      .required(t('lastNameRequired')),
+      .trim(),
+      // .required(t('lastNameRequired')),
     email: yup
       .string()
       .email(t('emailInvalid'))
@@ -91,10 +96,11 @@ const SignUpPage = () => {
 
           try {
             const answer = await requests.post(registerPath, postValues)
+              // console.log(answer);
               resetForm();
-              console.log(answer);
+              // send data to state (to react-redux) - done
+              dispatch(userActions.createUser(answer));
               navigate('/login')
-              // send data to state (to redux tolkit)
           } catch (error) {
               if (error.response) {
                 const statusCode = error.response.status;
@@ -144,6 +150,7 @@ const SignUpPage = () => {
                   name="first_name"
                   type="text"
                   label={t('firstName')}
+                  required={false}
                 />
 
                 <FormField
@@ -151,6 +158,7 @@ const SignUpPage = () => {
                   name="last_name"
                   type="text"
                   label={t('lastName')}
+                  required={false}
                 />
 
                 <FormField

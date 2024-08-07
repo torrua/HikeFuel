@@ -1,5 +1,5 @@
 const mainPage = {
-  pageInfo: 'Hike Fuel в работе',
+  pageInfo: 'HikeFuel в работе',
 };
 
 const userPage = {
@@ -31,8 +31,8 @@ const signUpPage = {
 
 const loginPage = {
   header: 'Войти',
-  nic: 'Ваш ник',
-  nicRequired: 'Пожалуйста, укажите ник',
+  nic: 'Имя пользователя (никнейм)',
+  nicRequired: 'Пожалуйста, укажите имя пользователя (никнейм)',
   password: 'Пароль',
   passwordRequired: 'Пожалуйста, укажите пароль',
   passwordMin: 'Не менее {{signs}} символов',
